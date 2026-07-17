@@ -186,7 +186,12 @@ function gotdrop(ev)
 		}
 	showfiles();
 }
-if (window.location.hash != "" || Object.keys(Module.files).length)
+function isiPhoneSafari()
+{
+	var ua = navigator.userAgent || '';
+	return /iPhone/.test(ua) && /Safari/.test(ua) && !/(CriOS|FxiOS|EdgiOS|OPiOS)/.test(ua);
+}
+if (!isiPhoneSafari() && (window.location.hash != "" || Object.keys(Module.files).length))
 	begin();		//if the url has a #foo.fmf then just begin instantly, 
 else
 	showfiles();	//otherwise show our lame file dropper and wait for the user to click 'go'.
